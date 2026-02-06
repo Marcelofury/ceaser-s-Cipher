@@ -9,26 +9,51 @@
     <div>
     <h1>Ceaser's Cipher</h1>
     <form >
-        <label for="original">Original Message</label><br>
+        <label for="original">Original Message :</label>
         <input id="original" type="text" value="pizzapizza"><br>
 
-        <label for="shift">Shift</label>
+        <label for="shift">Shift :</label>
         <input id="shift">
 
         <hr>
 
-        <label for="encrypted">Encrypted Message</label> <br>
-        <input id="encryptede" type="text"  value=""  readonly>
+        <label for="encrypted">Encrypted Message :</label>
+        <input id="encrypted" type="text"  value=""  readonly>
     </form>
     </div>
 
     <script>
         let originalMessage = 'abcdefg';
-        let shift = 1;
+        
 
         function startEncyption(){
-            console.log('something happens');
+           let encryptionMessage = '';
+           let shift = 1;
+           for(letter of originalMessage){
+            encryptionMessage += shiftLetter(letter, shift);
+           }
+
+           console.log(encryptionMessage);
         };
+        startEncyption();
+
+
+        function shiftLetter(letter, shift){
+            let newLetter='';
+
+            let letterCode = letter.charCodeAt(0);
+            let newLetterCode = letterCode + shift;
+
+
+            if (newLetterCode < 97){
+                newLetterCode += 26;
+            } else if(newLetterCode > 122){
+                newLetterCode -= 26;
+            }
+
+            newLetter = String.fromCharCode(newLetterCode);
+            return newLetter;
+        }
 
 
     </script>
